@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<hibernate-mapping xmlns="urn:nhibernate-mapping-2.2"
+                   assembly="DataMinerSI"
+                   namespace="DataMinerSI.Domain"
+                   default-lazy="false">
+  <class name="Pessoa" table="Pessoa">
+    <id name="IdPessoa" column="id_pessoa" type="Int64" unsaved-value="0" />
+    <property name="EstadoCivil" column="estado_civil" type="String" />
+    <property name="GrauInstrucao" column="grau_instrucao" type="String" />
+    <property name="NumeroFilhos" column="numero_filhos" type="Int32" />
+    <property name="Salario" column="salario" type="Double" />
+    <property name="IdadeAnos" column="idade_anos" type="Int32" />
+    <property name="IdadeMeses" column="idade_meses" type="Int32" />
+  </class>
+</hibernate-mapping>
