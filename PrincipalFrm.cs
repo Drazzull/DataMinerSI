@@ -86,7 +86,8 @@
                 }
 
                 // Faz a leitura do arquivo de texto
-                using (StreamReader arquivo = new StreamReader(this.txtArquivoSelecionado.Text))
+                using (StreamReader arquivo =
+                    new StreamReader(this.txtArquivoSelecionado.Text, System.Text.Encoding.Default))
                 {
                     // Faz a leitura de cada linha
                     string linha = string.Empty;
