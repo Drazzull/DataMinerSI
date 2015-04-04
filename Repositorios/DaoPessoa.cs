@@ -43,11 +43,19 @@
         {
             using (ISession session = NHibernateHelper.OpenSession())
             {
-                // Seleciona a pessoa do id desejado
-                return session.QueryOver<Pessoa>()
-                    .Where(x => x.IdPessoa == idPessoa)
-                    .Take(1)
-                    .SingleOrDefault();
+                try
+                {
+                    // Seleciona a pessoa do id desejado
+                    return session.QueryOver<Pessoa>()
+                        .Where(x => x.IdPessoa == idPessoa)
+                        .Take(1)
+                        .SingleOrDefault();
+                }
+                catch
+                {
+                }
+
+                return null;
             }
         }
     }

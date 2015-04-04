@@ -216,6 +216,7 @@
             this.LookAndFeel.UseDefaultLookAndFeel = false;
             this.Name = "PrincipalFrm";
             this.Text = "Dataminer";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.PrincipalFrm_FormClosing);
             ((System.ComponentModel.ISupportInitialize)(this.layoutControl)).EndInit();
             this.layoutControl.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.pgrProcessamento.Properties)).EndInit();
