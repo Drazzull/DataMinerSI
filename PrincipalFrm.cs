@@ -15,11 +15,6 @@
     {
         #region Campos
         /// <summary>
-        /// Thread de atualização da ProgressBar
-        /// </summary>
-        private Thread threadAtualizacaoProgressBar;
-
-        /// <summary>
         /// Thread para processamento do arquivo;
         /// </summary>
         private Thread threadProcessarArquivo;
@@ -43,11 +38,6 @@
         public PrincipalFrm()
         {
             this.InitializeComponent();
-
-            // Ativa a thread para ataulização da progressBar
-            this.threadAtualizacaoProgressBar = new Thread(this.AtualizarProgressBar);
-            this.threadAtualizacaoProgressBar.Start();
-
         }
         #endregion
 
@@ -143,11 +133,6 @@
         {
             try
             {
-                if ((this.threadAtualizacaoProgressBar != null) && this.threadAtualizacaoProgressBar.IsAlive)
-                {
-                    this.threadAtualizacaoProgressBar.Abort();
-                }
-
                 if ((this.threadProcessarArquivo != null) && this.threadProcessarArquivo.IsAlive)
                 {
                     this.threadProcessarArquivo.Abort();
@@ -170,15 +155,6 @@
         #endregion
 
         #region Threads
-        /// <summary>
-        /// Atualiza a posição da ProgressBar
-        /// </summary>
-        private void AtualizarProgressBar()
-        {
-            // Atualiza os dados da ProgressBar
-            this.pgrProcessamento.Update();
-        }
-
         /// <summary>
         /// Faz o processamento do arquivo de texto
         /// </summary>
@@ -259,6 +235,7 @@
             }
 
             this.pgrProcessamento.PerformStep();
+            this.pgrProcessamento.Update();
         }
 
         /// <summary>
@@ -274,8 +251,8 @@
                 return;
             }
 
-            this.btnProcessar.Enabled = desabilitar;
-            this.btnSelecionarArquivo.Enabled = desabilitar;
+            this.btnProcessar.Enabled = !desabilitar;
+            this.btnSelecionarArquivo.Enabled = !desabilitar;
 
             // Apaga a visibilidade da ProgressBar
             switch (desabilitar)
@@ -288,6 +265,8 @@
                     this.pnliProcessamento.Visibility = LayoutVisibility.OnlyInCustomization;
                     break;
             }
+
+            this.Refresh();
         }
         #endregion
         #endregion
